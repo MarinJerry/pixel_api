@@ -19,7 +19,7 @@ const local = {
 
 const dev = {
     app: {
-        port: parseInt(process.env.DEV_APP_PORT) || 3000
+        port: parseInt(process.env.LOCAL_APP_PORT) || 3000
     },
     db: {
         host: process.env.DEV_DB_HOST || 'localhost',

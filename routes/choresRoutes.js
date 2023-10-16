@@ -25,7 +25,7 @@ router.get('/', async function(req, res, next) {
 /* POST store */
 router.post('/', async function(req, res, next) {
   try {
-    res.json(await choresServices.create(req.body));
+    res.json(await choresServices.create(req.body.data));
   } catch (err) {
     console.error(`Error while creating chores`, err.message);
     next(err);
@@ -43,11 +43,11 @@ router.put('/:id', async function(req, res, next) {
 });
 
 /* DELETE */
-router.put('/disable/:id', async function(req, res, next) {
+router.put('/complete/:id', async function(req, res, next) {
   try {
-    res.json(await choresServices.change(req.params.id, req.body.status));
+    res.json(await choresServices.change(req.params.id, req.body.data.enabled));
   } catch (err) {
-    console.error(`Error while deleting chores`, err.message);
+    console.error(`Error while complete chores`, err.message);
     next(err);
   }
 });

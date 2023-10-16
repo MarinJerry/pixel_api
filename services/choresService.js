@@ -14,6 +14,8 @@ async function getMultiple(page = 1){
             enabled
         FROM 
             chores 
+        ORDER BY
+            id DESC
         LIMIT 
             ${offset}, ${config.listPerPage}`
     );
@@ -109,10 +111,10 @@ async function update(id, task){
 async function change(id, status) {
 
     let success = false;
-    status = (status === 0) ? 1 : status;
+    // status = (status === 0) ? 1 : status;
 
-    const result = await db.queryNewDB(
-      `UPDATE chores  SET status = ?  WHERE id = ?`,
+    const result = await db.query(config.db,
+      `UPDATE chores  SET enabled = ?  WHERE id = ?`,
       [status, id]
     );
   
